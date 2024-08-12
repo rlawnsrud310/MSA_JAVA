@@ -6,34 +6,27 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int num[][] = new int[n][n];
-		int count = 0;
+		int n1 = sc.nextInt();
+		int[] a = new int[n1];
+		int c = 0;
 		
-		for (int i = 0; i < n; i++) {
-			int count1 = n;
-			for (int j = 0; j < n; j++) {
-				count++;
-				num[i][j] = count;
-				}
-			i += 1;
-			for (int j = count1-1; j >= 0; j--) {
-				count++;
-				if(i >= n) {
-					
-				}
-				else {
-					num[i][j] = count;	
+		for (int i = 0; i < a.length; i++) {
+			int m = sc.nextInt();
+			
+			a[i] = m;
+		}
+		int n2 = sc.nextInt();
+		for (int i = 0; i < n2; i++) {
+			c = 0;
+			int m = sc.nextInt();
+			for (int j = 0; j < a.length; j++) {
+				if(a[j] == m) {
+					c = 1;
 				}
 			}
+			System.out.print(c + " ");
 		}
-		for (int i = 0; i < num.length; i++) {
-			for (int j = 0; j < num[i].length; j++) {
-				System.out.print(num[i][j] + " "); 
-			}
-			System.out.println();
-		}
-		
+		sc.close();
 	}		
 }
 
