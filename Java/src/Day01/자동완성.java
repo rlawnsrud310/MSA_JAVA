@@ -15,7 +15,6 @@ public class 자동완성 {
 		
 		// scnew 	: ctrl + space
 		Scanner sc = new Scanner(System.in);
-		
 	}
 }
 
