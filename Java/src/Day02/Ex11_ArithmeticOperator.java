@@ -7,7 +7,7 @@ public class Ex11_ArithmeticOperator {
 		System.out.println(10 + 20);
 		System.out.println(8 - 5);
 		System.out.println(5 * 4);
-		System.out.println(16 / 2);
+		System.out.println(23/4);
 		
 		System.out.println(8 % 6);
 		
