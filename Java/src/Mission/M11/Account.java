@@ -3,9 +3,9 @@ package Mission.M11;
 import java.util.Scanner;
 
 public class Account {
-	String account;
-	String name;
-	int money;
+	private String account;
+	private String name;
+	private int money;
 	
 	public Account() {
 		this("계좌없음", "이름없음", 0);
@@ -43,7 +43,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [account=" + account + ", name=" + name + ", money=" + money + "]";
+		return name + "			"+ account + "			" + money;
 	}
 	
 	
