@@ -17,7 +17,6 @@ public class M04 {
 			//띄어쓰기 생성
 			for(int j = g; j >= 1; j--) {
 				System.out.print(" ");
-				//반칸띄어쓰기로 바꿔야하는데 아직 방법모름;;;;
 			}
 			g--;
 			//별생성
