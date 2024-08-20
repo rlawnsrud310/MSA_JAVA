@@ -8,10 +8,10 @@ public class MathEx {
 		System.out.println(Math.E);				// 2.718281828459045 (자연상수)
 		System.out.println(Math.ceil(3.125));	// 올림 : 해당 수보다 큰 정수 중 가장 작은수
 		System.out.println(Math.floor(3.75));	// 내림 : 해당 수보다 작은 정수중 가장 큰 수
-		System.out.println(Math.sqrt(9));		// 제곱근
+		System.out.println(Math.sqrt(25));		// 제곱근
 		System.out.println(Math.pow(3, 2));		// 3의 2제곱
 		System.out.println(Math.exp(2));		// e의 2승
-		System.out.println(Math.round(3.14));	// 반올림
+		System.out.println(Math.round(3.51));	// 반올림
 		System.out.println("-------------------");
 		
 		// 로또 번호
