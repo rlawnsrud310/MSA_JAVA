@@ -1,5 +1,7 @@
 package Day10.Ex01_Lang;
 
+import java.util.ArrayList;
+
 public class MathEx {
 	public static void main(String[] args) {
 		System.out.println(Math.PI);			// 3.141592653589793 (원주율)
@@ -33,7 +35,19 @@ public class MathEx {
 		}
 		
 		for (int i = 0; i < lotto.length; i++) {
+			for (int j = 0; j < lotto.length; j++) {
+				if( lotto[i] < lotto[j]) {
+					int temp = lotto[i];
+					lotto[i] = lotto[j];
+					lotto[j] = temp;
+				}
+			}
+		}
+		
+		for (int i = 0; i < lotto.length; i++) {
 			System.out.print(lotto[i] + " ");
 		}
+	
+		
 	}
 }

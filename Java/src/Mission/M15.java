@@ -68,9 +68,6 @@ class Library extends Book{
 	Book library1 = new Book("123123","이게자바냐", "김자바", "자바 김자바", 33000);
 	Book library2 = new Book("112112","정보처리기사","김휴먼", "국가기술자격",45000);
 	Book library3 = new Book("001001","실무 DB", "박다비", "디비디비딥	", 60000);
-
-	
-	
 	
 }
 

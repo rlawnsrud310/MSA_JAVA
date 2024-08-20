@@ -184,6 +184,17 @@ public class M13 {
 				}
 			}
 		}
+		//당첨번호 배열 0~5번에 있는 6개값 오름차순 정렬
+		for (int i = 0; i < 6; i++) {
+			for (int jj = 0; jj < 6; jj++) {
+				if( c[i] < c[jj]) {
+					int temp = c[i];
+					c[i] = c[jj];
+					c[jj] = temp;
+				}
+			}
+		}
+		
 		//당첨번호 출력
 		System.out.print("당첨 번호 : ");
 		for (int i = 0; i < c.length-1; i++) {
@@ -203,6 +214,7 @@ public class M13 {
 		num = 65;
 		for (int i = 0; i < n; i++) {
 			count = 0;
+			int count1 = 0;
 			char ch = (char)num;
 			System.out.print(ch + " ");
 			if(aute[i] == 1) {
@@ -221,19 +233,35 @@ public class M13 {
 				}
 			}
 			num++;
-			
+			//비교했을때 같은값 count에 +1 저장
+			//2등 보너스볼값이랑 같은경우 counr1값을 1로 저장
 			for(int nak = 0; nak < 6; nak++ ) {
 				for(int dang = 0; dang < 6; dang++) {
 					if(c[nak] == b[i].get(dang)) {
 						count++;
 					}
+					if(c[6] == b[i].get(dang)) {
+						count1 = 1;
+					}
 				}
 			}
-			
-			if(count >= 3) {
-				System.out.print("(당첨)");
+			// 1~5등 및 낙첨 출력
+			if(count == 6) {
+				System.out.print("(1등)");
 			}
-			else {
+			else if(count == 5 && count1 == 1){
+				System.out.print("(2등)");
+			}
+			else if(count == 5){
+				System.out.print("(3등)");
+			}
+			else if(count == 4){
+				System.out.print("(4등)");
+			}
+			else if(count == 3){
+				System.out.print("(5등)");
+			}
+			else{
 				System.out.print("(낙첨)");
 			}
 			
@@ -243,5 +271,55 @@ public class M13 {
 		
 		System.out.println("################################################");
 // 당첨결과 출력 끝
+		
+		/*
+		//당첨결과 테스트
+				ArrayList<Integer> aa = new ArrayList<Integer>();
+				
+				// aa = 로또번호
+				aa.add(1);
+				aa.add(8);
+				aa.add(3);
+				aa.add(4);
+				aa.add(5);
+				aa.add(3);
+				
+				// bb = 당첨번호
+				int[] bb = {1,2,3,4,5,6,7};
+				
+				//값 초기화
+				int count1 = 0;
+				count = 0;
+				
+				for(int nak = 0; nak < 6; nak++ ) {
+					for(int dang = 0; dang < 6; dang++) {
+						if(bb[nak] == aa.get(dang)) {
+							count++;
+						}
+						if(bb[6] == aa.get(dang)) {
+							count1 = 1;
+						}
+					}
+				}
+				if(count == 6) {
+					System.out.print("(1등)");
+				}
+				else if(count == 5 && count1 == 1){
+					System.out.print("(2등)");
+				}
+				else if(count == 5){
+					System.out.print("(3등)");
+				}
+				else if(count == 4){
+					System.out.print("(4등)");
+				}
+				else if(count == 3){
+					System.out.print("(5등)");
+				}
+				else{
+					System.out.print("(낙첨)");
+				}
+				
+				System.out.println();*/ //당첨결과테스트 끝
 	}
 }
