@@ -23,13 +23,13 @@ public class Board {
 		this("제목없음", "작성자없음", "내용없음");
 	}
 	//매개변수가 있는 생성사
-	public Board(String title, String writer, String content) {
+	public Board( String title, String writer, String content ) {
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
 	}
 	//전체 매개변수 생성자
-	private Board(int no, String title, String writer, String content, String regDate, String updDate) {
+	Board(int no, String title, String writer, String content, String regDate, String updDate) {
 		this.no = no;
 		this.title = title;
 		this.writer = writer;
