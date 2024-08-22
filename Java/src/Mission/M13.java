@@ -42,18 +42,14 @@ public class M13 {
 					}
 				}
 			} else if (n1 == 2) {
-				System.out.print("① : ");
-				a.add(sc.nextInt());
-				System.out.print("② : ");
-				a.add(sc.nextInt());
-				System.out.print("③ : ");
-				a.add(sc.nextInt());
-				System.out.print("④ : ");
-				a.add(sc.nextInt());
-				System.out.print("⑤ : ");
-				a.add(sc.nextInt());
-				System.out.print("⑥ : ");
-				a.add(sc.nextInt());
+				int aa = 9312;
+				for (int i = 0; i < 6; i++) {
+					System.out.print((char)aa + " : ");
+					a.add(sc.nextInt());
+					aa++;
+				}
+				
+				
 
 			}
 			// 오름차순 정렬
@@ -73,7 +69,7 @@ public class M13 {
 	
 		// 현재 날짜/시간
 		LocalDateTime now = LocalDateTime.now();
-		
+		// - 2021-06-17T06:43:21.419878100
 		
 		int dw = now.getDayOfWeek().getValue(); // 요일(숫자) ex) 월 = 1, 화 =2....
 		
