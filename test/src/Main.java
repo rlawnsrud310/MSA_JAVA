@@ -1,45 +1,26 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
+
+		int a = sc.nextInt();
+		int b = sc.nextInt();
 		
-		int[][] a = new int[19][19];
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a[i].length; j++) {
-				a[i][j] = sc.nextInt();
-			}
-		}
-		int n = sc.nextInt();
-		int[][] b = new int[n][n];
+		LocalDateTime now = LocalDateTime.of(2000, 1, 1, a, b, 0);
 		
-		for (int i = 0; i < b.length; i++) {
-			for (int j = 0; i < b[i].length; j++) {
-				b[i-1][j-1] = sc.nextInt();
-				System.out.print(b[i][j] + " ");
-			}
-			System.out.println();
-		}
-		/*
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a[i].length; j++) {
-				if() {
-					a[i][j] = 1;										
-				}
-				else {
-					a[i][j] = 0;					
-				}
-			}
-		}*/
+		now = now.minusMinutes(30);
 		
-		/*
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a[i].length; j++) {
-				System.out.print(a[i][j] + " ");
-			}
-			System.out.println();
-		}
-		*/
+		
+		String ff = now.format(DateTimeFormatter.ofPattern("H m"));
+		
+		System.out.println(ff);
+		
+		
+		
+		
 		
 	}
 }
