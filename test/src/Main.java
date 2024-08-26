@@ -1,26 +1,33 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		Scanner sc = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "utf-8"));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out, "utf-8"));
 
-		int a = sc.nextInt();
-		int b = sc.nextInt();
-		
-		LocalDateTime now = LocalDateTime.of(2000, 1, 1, a, b, 0);
-		
-		now = now.minusMinutes(30);
-		
-		
-		String ff = now.format(DateTimeFormatter.ofPattern("H m"));
-		
-		System.out.println(ff);
-		
-		
-		
-		
-		
+			Scanner sc = new Scanner(System.in);
+			
+			double a = sc.nextDouble();
+			double b = sc.nextDouble();
+			
+			double p = (a-100)*0.9;
+			double pp = (b-p)*(100/p);
+			
+			if(pp <= 10) {
+				bw.write("정상");bw.flush();
+			}
+			else if(pp > 10 && pp <= 20) {
+				bw.write("과체중");bw.flush();				
+			}
+			else {
+				bw.write("비만");bw.flush();				
+				
+			}
+			
 	}
 }
