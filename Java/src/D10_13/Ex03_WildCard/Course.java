@@ -13,17 +13,15 @@ public class Course <T> implements Manager{
 		this.name = name;
 		this.students = students;
 	}
-	
-	
-	
 	public Course() {
 		this.name = "";
 		this.students = new ArrayList<T>();
 	}
-
 	public Course(List<T> students) {
 		this.students = students;
 	}
+	
+	 
 	
 	public String getName() {
 		return name;
@@ -71,7 +69,13 @@ public class Course <T> implements Manager{
 		System.out.println();
 	
 	}
-
+	/**
+	 * 수강생 추가
+	 * @param t
+	 */
+	public void addStudent(T t) {
+		getStudents().add(t);
+	}
 
 
 	@Override

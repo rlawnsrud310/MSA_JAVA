@@ -86,6 +86,8 @@ public class App {
 			System.out.println("::::::::::::::::::::::::::::");
 		}
 		public static void addStudent() {
+			System.out.println("- 과정 종류 (일반인, 직장인, 학생) : ");
+			String courseType = sc.nextLine();
 			System.out.print("- 수강생 종류 (일반인, 직장인, 학생, 고등학생, 중학생) : ");
 			String type = sc.nextLine();
 			System.out.println("- 수강생 이름 : ");
@@ -93,18 +95,40 @@ public class App {
 			System.out.println("- 등록할 과정 명");
 			String courseName = sc.nextLine();
 		
-			Course<?> selectedCourse = new Course();
+			Course<?> selectedCourse = new Course<>();
 			
+			Person newStudent = null;
 			// 해당 수강생을 등록할 과정을 지정
 			for (int i = 0; i < CourseList.size(); i++) {
 				Course<?> course = CourseList.get(i);
 				// 입력한 과정명과 등록된 과정명이 일치하면
 				if( course.getName().equals(courseName)) {
 					selectedCourse = course;		//지정된 과정
+					// 등록할 과정은 직장인이라, Course<Worker> 로 되어있고
+					// List<Worker> student 로 지정된다.
+					// 따라서 이 수강생 목록에 추가할 Worker 객체를 생성한다
+					//**********************************
+					switch (type) {
+					case "일반인": newStudent = new Person(name);break;
+					case "직장인": newStudent = new Worker(name);break;
+					case "학생": newStudent = new Student(name);break;
+					}
+					//***************************
 					break;
 				}
 			}
 		
+			// 과정 종류에 맞지 않는 수강생 종류를 등록할 경우 클래스 변환 예외가 발생한다.
+			try {
+				switch (courseType) {
+				case "일반인":( (Course<Person>) selectedCourse).addStudent(newStudent);break;
+				case "직장인":( (Course<Worker>) selectedCourse).addStudent((Worker)newStudent);break;
+				case "학생":( (Course<Student>) selectedCourse).addStudent((Student)newStudent);break;
+				}
+				studentList.add(newStudent); // 원시생 추가
+			} catch(Exception e) {
+				System.out.println(courseType + " 과정에 " + type + "을 등록할 수 없습니다.");
+			}
 		
 			// 선택된 과정에서 수강생 목록을 가져온다.
 			List<Person> students = (List<Person>) selectedCourse.getStudents();
