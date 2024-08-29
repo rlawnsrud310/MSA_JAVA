@@ -35,7 +35,7 @@ public class SetEx {
 		
 		
 		for (Integer item : set) {
-			System.out.print(" item : " + item);
+			System.out.print("item : " + item + " ");
 		}
 		System.out.println();
 	
