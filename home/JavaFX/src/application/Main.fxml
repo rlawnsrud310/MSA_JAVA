@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Avatar?>
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" layoutY="8.0" prefHeight="81.0" prefWidth="274.0" text="게시판 프로그램">
+         <font>
+            <Font name="System Italic" size="31.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="212.0" layoutY="95.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="177.0" text="글쓰기">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <HBox layoutX="93.0" layoutY="154.0" prefHeight="57.0" prefWidth="412.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="63.0" text="Button">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" top="6.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="63.0" text="Button">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" top="6.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="63.0" text="Button">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" top="6.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="63.0" text="Button">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" top="6.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <VBox layoutX="250.0" layoutY="230.0" prefHeight="217.0" prefWidth="97.0" style="-fx-border-color: blue;">
+         <children>
+            <Avatar>
+               <image>
+                  <Image url="@../../../../../../../Users/tj-bu-706-24/Desktop/화면%20캡처%202024-08-30%20095921.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Avatar>
+            <Label alignment="CENTER" text="김조은">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="12.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="53.0" prefWidth="91.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="38.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../Users/tj-bu-706-24/Desktop/화면%20캡처%202024-08-30%20100458.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="39.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../Users/tj-bu-706-24/Desktop/화면%20캡처%202024-08-30%20100509.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <TextField layoutX="369.0" layoutY="230.0" prefHeight="36.0" prefWidth="186.0" />
+   </children>
+</AnchorPane>
