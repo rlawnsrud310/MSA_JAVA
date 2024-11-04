@@ -230,7 +230,105 @@ public class ProductRepository extends JDBConnection {
 		}
 		return result;
 	}
+	
+	public int quantityplus(String id) {
+		int result = 0;
+		String sql = "UPDATE product SET quantity = quantity + 1 WHERE product_id = ?";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.err.println("장바구니 추가 에러");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public List<Product> list2() {
+		List<Product> productList = new ArrayList<Product>();
+		
+		String sql = "SELECT * FROM product WHERE quantity >= 1 ";
+		
+		try {
+			stmt = con.createStatement();
+			
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				Product product = new Product();
+				
+				product.setProductId(rs.getString("product_id"));
+				product.setName(rs.getString("name"));;
+				product.setUnitPrice(rs.getInt("unit_price"));;
+				product.setDescription(rs.getString("description"));;
+				product.setManufacturer(rs.getString("manufacturer"));
+				product.setCategory(rs.getString("category"));
+				product.setUnitsInStock(rs.getLong("units_in_stock"));
+				product.setCondition(rs.getString("condition"));;
+				product.setQuantity(rs.getInt("quantity"));
+				// 안쓴거 quantity 장바구니 개수
+				productList.add(product);
+			}
+			
+		} catch (Exception e) {
+			System.err.println("리스트 목록 출력오류");
+			e.printStackTrace();
+		}
+		
+		return productList;
+		
+	}
+	
+	public int total() {
+	    int result = 0;
+	    String sql = "SELECT SUM(quantity) AS total FROM product WHERE quantity >= 1";
+	    
+	    try {
+	    	stmt = con.createStatement();
+	    	rs = stmt.executeQuery(sql);
+	        if (rs.next()) {
+	            result = rs.getInt("total");
+	            if (rs.wasNull()) { // 총합이 null인 경우
+	                result = 0;
+	            }
+	        }
+	    } catch (Exception e) {
+	        System.err.println("장바구니 에러");
+	        e.printStackTrace();
+	    }
+	    
+	    return result;
+	}
+	
+	public void resetQuantityToZero() {
+	    String sql = "UPDATE product SET quantity = 0";
 
+	    try  {
+	    	stmt = con.createStatement();
+	        int rowsUpdated = stmt.executeUpdate(sql);
+	        System.out.println("Updated rows: " + rowsUpdated);
+	    } catch (Exception e) {
+	        System.err.println("수량 초기화 에러");
+	        e.printStackTrace();
+	    }
+	}
+	
+	public void resetQuantityToZeroById(String productId) {
+	    String sql = "UPDATE product SET quantity = 0 WHERE product_id = ?";
+
+	    try {
+	    	psmt = con.prepareStatement(sql);
+	        psmt.setString(1, productId); // product_id에 값 설정
+	        int rowsUpdated = psmt.executeUpdate();
+	        System.out.println("Updated rows: " + rowsUpdated);
+	    } catch (Exception e) {
+	        System.err.println("수량 초기화 에러");
+	        e.printStackTrace();
+	    }
+	}
 }
 
 

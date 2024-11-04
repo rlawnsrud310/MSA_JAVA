@@ -1,3 +1,4 @@
+<%@page import="shop.dao.ProductRepository"%>
 <%@page import="shop.dto.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,6 +14,9 @@
 	System.out.println(loginId);
 	String keyword = request.getParameter("keyword");
 	keyword = keyword == null ? "" : keyword;
+	
+	ProductRepository count = new ProductRepository();
+	System.out.println("count : " + count.total());
 	
 %>
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
@@ -74,7 +78,7 @@
         <li class="nav-item">
 	        <a class="nav-link position-relative" aria-current="page" href="<%= root %>/shop/cart.jsp">
 	        	<i class="material-symbols-outlined">shopping_bag</i>
-	        	<span class="cart-count"><%= cartCount %></span>
+	        	<span class="cart-count"><%= count.total() %></span>
 	        </a>
         </li>
       </ul>

@@ -125,7 +125,7 @@
                         <p>${product.description}</p>
                         <p class="text-end price">₩ ${product.unitPrice}</p>
                         <p class="d-flex justify-content-between">
-                            <a href="./cart_pro.jsp?id=P100001" class="btn btn-outline-primary">
+                            <a href="./cart_pro.jsp?id=${product.productId }" class="btn btn-outline-primary">
                                 <i class="material-symbols-outlined">shopping_bag</i>
                             </a> 
                             <a href="./product.jsp?id=${product.productId }" class="btn btn-outline-primary">
