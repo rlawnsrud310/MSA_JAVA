@@ -11,7 +11,18 @@
 <% 
 	String root = request.getContextPath(); 
 	ProductRepository productDAO = new  ProductRepository();
-	List<Product> productList =  productDAO.list();
+	String keyword = request.getParameter("keyword");
+	System.out.println("키워드는 : " + keyword);
+	List<Product> productList =  productDAO.list();		
+	List<Product> productList2 =  productDAO.list(keyword);		
+	
+	/* if( keyword == null ){
+		System.out.println("키워드 별과 : true");	
+	}
+	else{
+		System.out.println("키워드 별과 : flate");			
+	} */
+ 	
 %>
 <!DOCTYPE html>
 <html>
@@ -71,67 +82,7 @@
 
 
 
-	<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary"
-		data-bs-theme="dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="<%= root %>/">Home</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="<%= root %>/shop/products.jsp">Product</a></li>
-				</ul>
-				<ul class="navbar-nav d-flex align-items-center px-3">
-
-					<!-- 로그인 시 -->
-					<!--         <li class="nav-item"> -->
-
-					<!--         </li> -->
-					<li class="nav-item">
-						<div class="dropdown">
-							<a href="#"
-								class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-								data-bs-toggle="dropdown" aria-expanded="false"> <img
-								src="https://github.com/mdo.png" alt="" width="32" height="32"
-								class="rounded-circle me-2"> <strong>123</strong>
-							</a>
-							<ul class="dropdown-menu text-small shadow">
-								<li><a class="dropdown-item" href="<%= root %>/user/index.jsp">마이
-										페이지</a></li>
-								<li><a class="dropdown-item" href="<%= root %>/user/update.jsp">회원정보
-										수정</a></li>
-								<li><a class="dropdown-item" href="<%= root %>/user/order.jsp">주문내역</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="<%= root %>/user/logout.jsp">로그아웃</a></li>
-							</ul>
-						</div>
-					</li>
-
-
-					<!--         <li class="nav-item"> -->
-
-					<!--         </li> -->
-
-					<li class="nav-item"><a class="nav-link position-relative"
-						aria-current="page" href="<%= root %>/shop/cart.jsp"> <i
-							class="material-symbols-outlined">shopping_bag</i> <span
-							class="cart-count">0</span>
-					</a></li>
-				</ul>
-				<form class="d-flex" role="search" action="<%= root %>/shop/products.jsp"
-					method="get">
-					<input class="form-control me-2" type="search" name="keyword"
-						placeholder="Search" aria-label="Search" value="">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
-			</div>
-		</div>
-	</nav>
+	<jsp:include page="/layout/header.jsp" />
 
 
 
@@ -157,17 +108,18 @@
 	<div class="container mb-5">
     <div class="row gy-4">
         <c:set var="productList" value="<%= productList %>"></c:set>
+        <c:set var="productList2" value="<%= productList2 %>"></c:set>
         
+        <!-- keyword 있는지 없는지 조건문 -->
+		<%  if(keyword != null  || !keyword.equals("") ) { %>
         <!-- 반복 돌려야함 -->
-        <c:forEach var="product" items="${productList}" varStatus="status">
+        <c:forEach var="product" items="${productList2}" varStatus="status">
             <!-- 각 카드에 col-md-6 클래스 적용 -->
             <div class="col-md-6 col-xl-4 col-xxl-3">
                 <div class="card p-3">
-                    이미지 영역
                     <div class="img-content">
                         <img src="img?id=${product.productId}" class="w-100 p-2" />
                     </div>
-                    컨텐츠 영역
                     <div class="content">
                         <h3 class="text-center">${product.name}</h3>
                         <p>${product.description}</p>
@@ -184,6 +136,33 @@
                 </div>
             </div>
         </c:forEach>
+        <!-- keyword 없을때 -->
+		<%  }  else {	%>
+		
+		<c:forEach var="product" items="${productList}" varStatus="status">
+            <!-- 각 카드에 col-md-6 클래스 적용 -->
+            <div class="col-md-6 col-xl-4 col-xxl-3">
+                <div class="card p-3">
+                    <div class="img-content">
+                        <img src="img?id=${product.productId}" class="w-100 p-2" />
+                    </div>
+                    <div class="content">
+                        <h3 class="text-center">${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p class="text-end price">₩ ${product.unitPrice}</p>
+                        <p class="d-flex justify-content-between">
+                            <a href="./cart_pro.jsp?id=P100001" class="btn btn-outline-primary">
+                                <i class="material-symbols-outlined">shopping_bag</i>
+                            </a> 
+                            <a href="./product.jsp?id=${product.productId }" class="btn btn-outline-primary">
+                                상세 정보
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+        <% } %>
     </div>
 </div>
 	

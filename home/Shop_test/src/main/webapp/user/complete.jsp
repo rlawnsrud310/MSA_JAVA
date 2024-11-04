@@ -23,7 +23,7 @@
 	</div>
 	<!-- 회원 가입/수정/탈퇴 완료 -->
 	<div class="container mb-5">
-	
+		
 		<!-- msg = 0 -->
 		<% if(msg.equals("0")) { %>
 			<h1 class="text-center"><%= loginId %>님 환영 합니다.</h1>
@@ -63,6 +63,7 @@
 				<a href="<%= root %>/" class="btn btn-lg btn-primary">메인 화면</a>
 			</div>
 		<% } %>
+		
 	</div>
 	<jsp:include page="/layout/footer.jsp" />
 	<jsp:include page="/layout/script.jsp" />

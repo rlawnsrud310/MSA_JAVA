@@ -54,8 +54,45 @@ public class ProductRepository extends JDBConnection {
 	 * @return
 	 */
 	public List<Product> list(String keyword) {
+		List<Product> productList = new ArrayList<Product>();
+		keyword = "%" + keyword + "%";
+		System.out.println(keyword);
 		
-		return null;
+		String sql = "SELECT * FROM product "
+		           + "WHERE name LIKE ? "
+		           + "OR description LIKE ? "
+		           + "OR manufacturer LIKE ? "
+		           + "OR category LIKE ?";
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, keyword);
+			psmt.setString(2, keyword);
+			psmt.setString(3, keyword);
+			psmt.setString(4, keyword);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				Product product = new Product();
+				
+				product.setProductId(rs.getString("product_id"));
+				product.setName(rs.getString("name"));;
+				product.setUnitPrice(rs.getInt("unit_price"));;
+				product.setDescription(rs.getString("description"));;
+				product.setManufacturer(rs.getString("manufacturer"));
+				product.setCategory(rs.getString("category"));
+				product.setUnitsInStock(rs.getLong("units_in_stock"));
+				product.setCondition(rs.getString("condition"));;
+				product.setFile(rs.getString("file"));
+				// 안쓴거 quantity 장바구니 개수
+				productList.add(product);
+			}
+			
+		} catch (Exception e) {
+			System.err.println("리스트 목록 출력오류");
+			e.printStackTrace();
+		}
+		
+		return productList;
 	}
 	
 	/**
@@ -149,7 +186,7 @@ public class ProductRepository extends JDBConnection {
 				+ ", manufacturer = ?"
 				+ ", category = ?"
 				+ ", units_in_stock = ?"
-				+ ", condition = ?"
+				+ ", `condition` = ?"
 				+ ", file = ?"
 				+ " WHERE product_id = ?";
 			try {

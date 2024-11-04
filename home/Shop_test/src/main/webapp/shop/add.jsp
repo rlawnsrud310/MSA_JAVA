@@ -60,60 +60,7 @@
 
     
 
-<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="<%= root %>/">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= root %>/shop/products.jsp">Product</a>
-        </li>
-      </ul>
-       <ul class="navbar-nav d-flex align-items-center px-3">
-       	
-        <!-- 로그인 시 -->
-<!--         <li class="nav-item"> -->
-
-<!--         </li> -->
-        <li class="nav-item">
-        <div class="dropdown">
-	      <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-	        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-	        <strong>123</strong>
-	      </a>
-	      <ul class="dropdown-menu text-small shadow">
-	        <li><a class="dropdown-item" href="<%= root %>/user/index.jsp">마이 페이지</a></li>
-	        <li><a class="dropdown-item" href="<%= root %>/user/update.jsp">회원정보 수정</a></li>
-	        <li><a class="dropdown-item" href="<%= root %>/user/order.jsp">주문내역</a></li>
-	        <li><hr class="dropdown-divider"></li>
-	        <li><a class="dropdown-item" href="<%= root %>/user/logout.jsp">로그아웃</a></li>
-	      </ul>
-	    </div>
-        </li>
-        
-        
-<!--         <li class="nav-item"> -->
-
-<!--         </li> -->
-        
-        <li class="nav-item">
-	        <a class="nav-link position-relative" aria-current="page" href="<%= root %>/shop/cart.jsp">
-	        	<i class="material-symbols-outlined">shopping_bag</i>
-	        	<span class="cart-count">0</span>
-	        </a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search" action="<%= root %>/shop/products.jsp" method="get">
-        <input class="form-control me-2" type="search" name="keyword" placeholder="Search" aria-label="Search"
-        		value="">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+<jsp:include page="/layout/header.jsp" />
 
 
 
@@ -129,12 +76,12 @@
 	<!-- 상품 등록 입력 화면 -->
 	<div class="container shop">
 		<!-- [NEW] enctype 추가 -->
-		<form name="product" action="./add_pro.jsp" method="post">
+		<form name="product" action="./add_pro.jsp" method="post" enctype="multipart/form-data">
 			
 			<!-- [NEW] 파일 입력 추가 -->
 			<div class="input-group mb-3 row">
 				<label class="input-group-text col-md-2" id="">상품 이미지</label>
-				<input type="file" class="form-control col-md-10" name="file">
+				<input type="file" class="form-control col-md-10" name="file" multiple>
 			</div>	
 		
 			<div class="input-group mb-3 row">
@@ -193,7 +140,7 @@
 			</div>
 			
 			<div class="d-flex justify-content-between mt-5 mb-5">
-				<a href="./products.jsp" class="btn btn-lg btn-secondary">목록</a>
+				<a href="./products.jsp?keyword=" class="btn btn-lg btn-secondary">목록</a>
 				<input type="submit" class="btn btn-lg btn-primary" value="등록" />
 			</div>
 		
