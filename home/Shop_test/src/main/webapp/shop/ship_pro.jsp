@@ -31,6 +31,7 @@
 	
 	if(result > 0){
 		response.sendRedirect("../user/order.jsp");
+		
 	}
 	
 %>

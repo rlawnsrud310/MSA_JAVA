@@ -32,6 +32,8 @@ public class OrderRepository extends JDBConnection {
 			psmt.setString(8, ship.getPhone());
 			result = psmt.executeUpdate();
 			
+			zero();
+			
 		} catch (Exception e) {
 			System.err.println("주문등록실패");
 			e.printStackTrace();
@@ -40,6 +42,26 @@ public class OrderRepository extends JDBConnection {
 		
 		return result;
 	}
+	public void zero() {
+		//String sql = "UPDATE product set quantity = 0";
+		String sql = "ALTER TABLE product DROP COLUMN quantity ";
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			System.err.println("장바구니 비우기 실패");
+			e.printStackTrace();
+		}
+		sql = "ALTER TABLE product ADD COLUMN quantity INT DEFAULT 0 NOT NULL ";
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			System.err.println("장바구니 비우기 실패");
+			e.printStackTrace();
+		}
+	}
+	
 
 	/**
 	 * 최근 등록한 orderNo 
@@ -68,16 +90,15 @@ public class OrderRepository extends JDBConnection {
 				Product product = new Product();
 				product.setOrderNo(rs.getInt("order_no"));
 				product.setUserId(rs.getString("user_id"));
-				product.setUserId(rs.getString("user_id"));
 				product.setUnitPrice(rs.getInt("total_price"));
-				
+				list.add(product);
 			}
 			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return null;
+		return list;
 	}
 	
 	/**

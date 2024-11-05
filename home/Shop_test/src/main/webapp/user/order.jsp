@@ -8,6 +8,7 @@
     pageEncoding="UTF-8"%>
 
 <%
+	String root = request.getContextPath();
 	String userId = (String) session.getAttribute("loginId");
 	OrderRepository orderDAO = new OrderRepository();
 	List<Product> orderlist = orderDAO.list(userId);
@@ -64,69 +65,8 @@
 <link href="/static/css/style.css" rel="stylesheet" />
 </head>
 <body>   
-	
-	
-	
 
-
-    
-
-<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/shop/products.jsp">Product</a>
-        </li>
-      </ul>
-       <ul class="navbar-nav d-flex align-items-center px-3">
-       	
-        <!-- 로그인 시 -->
-<!--         <li class="nav-item"> -->
-
-<!--         </li> -->
-        <li class="nav-item">
-        <div class="dropdown">
-	      <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-	        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-	        <strong>123</strong>
-	      </a>
-	      <ul class="dropdown-menu text-small shadow">
-	        <li><a class="dropdown-item" href="/user/index.jsp">마이 페이지</a></li>
-	        <li><a class="dropdown-item" href="/user/update.jsp">회원정보 수정</a></li>
-	        <li><a class="dropdown-item" href="/user/order.jsp">주문내역</a></li>
-	        <li><hr class="dropdown-divider"></li>
-	        <li><a class="dropdown-item" href="/user/logout.jsp">로그아웃</a></li>
-	      </ul>
-	    </div>
-        </li>
-        
-        
-<!--         <li class="nav-item"> -->
-
-<!--         </li> -->
-        
-        <li class="nav-item">
-	        <a class="nav-link position-relative" aria-current="page" href="/shop/cart.jsp">
-	        	<i class="material-symbols-outlined">shopping_bag</i>
-	        	<span class="cart-count">0</span>
-	        </a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search" action="/shop/products.jsp" method="get">
-        <input class="form-control me-2" type="search" name="keyword" placeholder="Search" aria-label="Search"
-        		value="">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-
-
+<jsp:include page="/layout/header.jsp" />
 
 
 
@@ -188,6 +128,7 @@
 					<tbody>
 						<!-- 반복할꺼 -->
 						<%
+						int sum = 0;
 						for(Product order : orderlist) {
 						%>
 						<tr>
@@ -198,7 +139,10 @@
 							<td><%= order.getUnitPrice() %></td>			
 							<td></td>			
 						</tr>
-						<% } %>
+						<% 
+						sum += order.getUnitPrice();
+						}
+						%>
 						<!-- 반복끝  -->
 					</tbody>
 					<tfoot>
@@ -207,7 +151,7 @@
 							<td></td>
 							<td></td>
 							<td>총액</td>
-							<td id="cart-sum">50000</td>
+							<td id="cart-sum"><%= sum %></td>
 							<td></td>
 						</tr>
 						
@@ -281,8 +225,6 @@
 	</script>
 </body>
 </html>
-
-
 
 
 
